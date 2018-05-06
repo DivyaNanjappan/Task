@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
+
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+    defaultConfig {
+        applicationId "com.appworld.base"
+        multiDexEnabled true
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'licenses/javolution.license.TXT'
+        exclude 'org/apache/maven/project/pom-4.0.0.xml'
+        exclude 'org/cyberneko/html/res/HTMLlat1.properties'
+        exclude 'licenses/extreme.indiana.edu.license.TXT'
+        exclude 'org/cyberneko/html/res/ErrorMessages_ja.properties'
+        exclude 'licenses/thoughtworks.TXT'
+        exclude 'org/cyberneko/html/res/ErrorMessages_ja.txt'
+        exclude 'META-INF/plexus/components.xml'
+        exclude 'org/cyberneko/html/res/ErrorMessages.properties'
+        exclude 'META-INF/rxjava.properties'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+
+    //Constraint
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:multidex:1.0.0'
+
+    //AppCompat
+    implementation "com.android.support:support-v4:${supportVersion}"
+    implementation "com.android.support:appcompat-v7:${supportVersion}"
+    implementation "com.android.support:gridlayout-v7:${supportVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportVersion}"
+    implementation "com.android.support:cardview-v7:${supportVersion}"
+    implementation "com.android.support:design:${supportVersion}"
+    implementation "com.android.support:support-annotations:${supportVersion}"
+
+    //Kotlin+Support
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Nucleus
+    implementation 'info.android15.nucleus:nucleus:4.0.0'
+    implementation 'info.android15.nucleus:nucleus-support-v7:4.0.0'
+
+    //Dagger
+    implementation "com.google.dagger:dagger:${dagger2Version}"
+    implementation "com.google.dagger:dagger-android-support:${dagger2Version}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${dagger2Version}"
+    kapt "com.google.dagger:dagger-compiler:${dagger2Version}"
+
+    //Rx bindings
+    implementation 'io.reactivex:rxjava:1.0.14'
+    implementation 'io.reactivex:rxandroid:1.0.1'
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //logging
+    implementation 'com.orhanobut:logger:1.15'
+    implementation 'com.google.code.gson:gson:2.6.2'
+}
